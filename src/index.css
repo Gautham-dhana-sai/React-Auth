@@ -9,3 +9,9 @@
 .color-red {
   color: red
 }
+
+.form-control:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #ced4da !important; /* Optional */
+}
