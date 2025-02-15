@@ -16,4 +16,9 @@ export class AuthService{
         const url = AuthSettings.API.VERIFY_SIGNUP;
         return await this._apiLib.callApi(url, "POST", body)
     }
+
+    async loginUser(body) {
+        const url = AuthSettings.API.LOGIN_USER;
+        return await this._apiLib.callApi(url, "POST", body)
+    }
 }
