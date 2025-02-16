@@ -1,0 +1,10 @@
+.center-box{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    height: 100% !important;
+}
+
+.modal-w500{
+    width: 500px !important
+}
