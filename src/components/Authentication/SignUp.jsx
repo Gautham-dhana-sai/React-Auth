@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import ContainerBox from "../Common/Container-Box";
 import {AuthService} from "../../library/services/auth.service";
+
+import ContainerBox from "../Common/Container-Box";
 import Otp from "../Common/Otp";
+import PopUpModal from "../Common/PopUp-Modal";
 
 export function SignUp() {
   const authService = new AuthService()
   const navigate = useNavigate()
   const location = useLocation()
 
+  const [modal_data, setModalData] = useState({
+    title: 'Information',
+    context: 'An OTP will be sent to your mail, please verify to sign-up',
+    confirm_context: 'Send OTP',
+    close_context: 'Edit details'
+  })
   const [user_name, setUserName] = useState("");
   const [nameBlur, setNameBlur] = useState(false);
   const [email, setEmail] = useState("");
@@ -16,18 +24,29 @@ export function SignUp() {
   const [password, setPassword] = useState("");
   const [passBlur, setPassBlur] = useState(false);
   const [fragment, setFragment] = useState('')
+  const [openModal, setOpenModal] = useState(false)
+  const [verified, setVerified] = useState(false)
 
   useEffect(() => {
-    setFragment(location.hash.replace("#","")) 
+    setFragment(location.hash.replace("#",""))
   }, [location])
 
-  async function onSubmit() {
+  function onSubmit() {
     setEmailBlur(true)
     setPassBlur(true)
     setNameBlur(true)
     if(email.includes('@') && password.length >= 8 && user_name.length >= 8) {
-      await signUpUser()
+      setOpenModal(true)
     }
+  }
+    
+  function closeModal() {
+    setOpenModal(false)
+    document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+  }
+    
+  async function sendOtp() {
+      await signUpUser()
   }
 
   async function signUpUser() {
@@ -35,23 +54,37 @@ export function SignUp() {
       email,
       password
     }
-    console.log(body)
     await authService.signUpUser(body).then((response) => {
-      if(response.success) {
-        navigate('/signup')
-        window.location.hash = 'otp'
+      if(response && response.success) {
+        if(!response.verified){
+          window.location.hash = 'otp'
+          closeModal()
+        }else {
+          setModalData({...modal_data, context: response.message, confirm_context: 'Login'})
+          setVerified(true)
+        }
       }
     })
   }
 
   async function verify(body) {
-    console.log(body)
     await authService.verifyOtp(body).then((response) => {
-      console.log(response)
-      if(response.success){
-        navigate('/login')
+      if(response && response.success){
+        setOpenModal(true)
+        if(response.verified){
+          setModalData({...modal_data, context: response.message, confirm_context: 'Login', hide_close: true})
+          setVerified(true)
+        } else {
+          setVerified(false)
+          setModalData({...modal_data, context: response.message, confirm_context: 'Resend OTP', close_context: 'Retry'})
+        }
       }
     })
+  }
+
+  function openLogin() {
+    closeModal()
+    navigate('/login')
   }
 
   return (
@@ -104,6 +137,8 @@ export function SignUp() {
         </div>
       </div>}
       {fragment == 'otp' && <Otp email={email} verify={verify}></Otp>}
+      {openModal && !verified && <PopUpModal modal_data={modal_data} close={closeModal} submit={sendOtp}></PopUpModal>}
+      {openModal && verified && <PopUpModal modal_data={modal_data} close={closeModal} submit={openLogin}></PopUpModal>}
       </ContainerBox>
     </>
   );
