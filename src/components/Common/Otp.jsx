@@ -3,6 +3,7 @@
 import PropTypes from "prop-types"
 import "../../styles/inputs.css"
 import { useRef, useState } from "react"
+import SparkButton from "./Spark-Button"
 
 const Otp = ({email, verify}) => {
     const [otp, setOpt] = useState(['', '', '', ''])
@@ -59,9 +60,10 @@ const Otp = ({email, verify}) => {
                             </div>
                         </div>
                         <div>
-                            <button type="button" className="btn btn-outline-light btn-dark" onClick={onVerify}>
+                            {/* <button type="button" className="btn btn-outline-light btn-dark" onClick={onVerify}>
                                 Verify
-                            </button>
+                            </button> */}
+                            <SparkButton name={'Verify'} clickFunc={onVerify}></SparkButton>
                         </div>
                     </form>
                 </div>
