@@ -3,7 +3,7 @@ import ContainerBox from "../Common/Container-Box";
 import { AuthService } from "../../library/services/auth.service";
 import PopUpModal from "../Common/PopUp-Modal";
 import { useNavigate } from "react-router-dom";
-import SparkButton from "../Common/Spark-Button";
+import SparkButton from "../imports/Spark-Button";
 
 
 export function Login() {
@@ -23,6 +23,7 @@ export function Login() {
   const [passBlur, setPassBlur] = useState(false);
   const [openModal, setOpenModal] = useState(false)
   const [signup, setSignup] = useState(false)
+  const [loginLoader, setLoginLoader] = useState(false)
 
   async function onSubmit() {
     setEmailBlur(true)
@@ -38,8 +39,12 @@ export function Login() {
   }
 
   async function loginUser() {
+    setLoginLoader(true)
     const body = {email, password}
     await authService.loginUser(body).then((response) => {
+      // setTimeout(() => {
+        setLoginLoader(false)
+      // }, 1000)
       console.log(response)
       if(response && response.success){
         if(response.data.login) {
@@ -73,7 +78,6 @@ export function Login() {
           <br></br>
           <form>
             <div className="mb-3">
-              {/* <label className="form-label">Email address</label> */}
               <div className="input-group flex-nowrap">
               <input type="email" className="form-control" value={email} placeholder="Your email"
                 onChange={(event) => {setEmail(event.target.value)}}
@@ -86,7 +90,6 @@ export function Login() {
               </div>
             </div>
             <div className="mb-3">
-              {/* <label className="form-label">Password</label> */}
               <input type="password" className="form-control" value={password} placeholder="Password"
                 onChange={(event) => {setPassword(event.target.value)}}
                 onBlur={() => {setPassBlur(true)}}/>
@@ -95,10 +98,7 @@ export function Login() {
               {passBlur && password.length !== 0 && password.length < 8 && (<div className="form-text text-danger">Enter min 8 characters</div>)}
               </div>
             </div>
-            {/* <button type="button" className="btn btn-outline-light btn-dark" onClick={onSubmit}>
-              Login
-            </button> */}
-            <SparkButton name={'Login'} clickFunc={onSubmit}></SparkButton>
+            <SparkButton name={'Login'} clickFunc={onSubmit} loading={loginLoader}></SparkButton>
           </form>
         </div>
       </div>

@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import '../../styles/components/spark-button.css'
+import SparkButtonLoader from "./Spark-Button-Loader";
 
-const SparkButton = ({name, clickFunc}) => {
+const SparkButton = ({name, clickFunc, loading = false}) => {
 
   return (
     <>
@@ -22,7 +23,8 @@ const SparkButton = ({name, clickFunc}) => {
         </div>
 
         <span className="inner">
-          <svg
+          {!loading && (<span>
+            <svg
             className="icon"
             fill="none"
             stroke="currentColor"
@@ -34,7 +36,9 @@ const SparkButton = ({name, clickFunc}) => {
           >
             <polyline points="13.18 1.37 13.18 9.64 21.45 9.64 10.82 22.63 10.82 14.36 2.55 14.36 13.18 1.37"></polyline>
           </svg>
-          {name || 'Button'}
+            {name || 'Button'}
+          </span>)}
+          {loading && <SparkButtonLoader></SparkButtonLoader>}
         </span>
       </button>
     </>
@@ -43,7 +47,8 @@ const SparkButton = ({name, clickFunc}) => {
 
 SparkButton.propTypes = {
     name: PropTypes.string,
-    clickFunc: PropTypes.func
+    clickFunc: PropTypes.func,
+    loading: PropTypes.bool
 }
 
 export default SparkButton

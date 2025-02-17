@@ -3,9 +3,9 @@
 import PropTypes from "prop-types"
 import "../../styles/inputs.css"
 import { useRef, useState } from "react"
-import SparkButton from "./Spark-Button"
+import SparkButton from "../imports/Spark-Button"
 
-const Otp = ({email, verify}) => {
+const Otp = ({email, verify, verifyLoader}) => {
     const [otp, setOpt] = useState(['', '', '', ''])
     const [toVerify, setToVerify] = useState(false)
     const inputRefs = useRef([]);
@@ -42,7 +42,6 @@ const Otp = ({email, verify}) => {
 
     return (
         <>
-        {/* <ContainerBox> */}
             <div className="container text-center">
                 <div className="">
                     <h3>Verification</h3>
@@ -60,22 +59,19 @@ const Otp = ({email, verify}) => {
                             </div>
                         </div>
                         <div>
-                            {/* <button type="button" className="btn btn-outline-light btn-dark" onClick={onVerify}>
-                                Verify
-                            </button> */}
-                            <SparkButton name={'Verify'} clickFunc={onVerify}></SparkButton>
+                            <SparkButton name={'Verify'} clickFunc={onVerify} loading={verifyLoader}></SparkButton>
                         </div>
                     </form>
                 </div>
             </div>
-        {/* </ContainerBox> */}
         </> 
     )
 }
 
 Otp.propTypes = {
   email: PropTypes.node,
-  verify: PropTypes.func
+  verify: PropTypes.func,
+  verifyLoader: PropTypes.bool
 }
 
 export default Otp
