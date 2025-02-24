@@ -3,6 +3,8 @@ import ContainerBox from "../Common/Container-Box";
 import { AuthService } from "../../library/services/auth.service";
 import PopUpModal from "../Common/PopUp-Modal";
 import { useNavigate } from "react-router-dom";
+import SparkButton from "../imports/Spark-Button";
+import Toggle from "../imports/Toggle";
 
 
 export function Login() {
@@ -22,6 +24,7 @@ export function Login() {
   const [passBlur, setPassBlur] = useState(false);
   const [openModal, setOpenModal] = useState(false)
   const [signup, setSignup] = useState(false)
+  const [loginLoader, setLoginLoader] = useState(false)
 
   async function onSubmit() {
     setEmailBlur(true)
@@ -37,8 +40,12 @@ export function Login() {
   }
 
   async function loginUser() {
+    setLoginLoader(true)
     const body = {email, password}
     await authService.loginUser(body).then((response) => {
+      // setTimeout(() => {
+        setLoginLoader(false)
+      // }, 1000)
       console.log(response)
       if(response && response.success){
         if(response.data.login) {
@@ -69,33 +76,33 @@ export function Login() {
         <div className="container">
         <div className="">
           <h2 className="">Login</h2>
+          <br></br>
           <form>
             <div className="mb-3">
-              <label className="form-label">Email address</label>
               <div className="input-group flex-nowrap">
               <input type="email" className="form-control" value={email} placeholder="Your email"
                 onChange={(event) => {setEmail(event.target.value)}}
                 onBlur={() => {setEmailBlur(true)}}/>
-              <span className="input-group-text" id="basic-addon2"><strong>@xyz.com</strong></span>
+              <span className="input-group-text shadow-btm" id="basic-addon2"><strong>@xyz.com</strong></span>
               </div>
+              <div className="">
               {emailBlur && email.length === 0 && (<div className="form-text text-danger">Email is required</div>)}
               {emailBlur && email.length !== 0 && !email.includes("@") && (<div className="form-text text-danger">Enter a valid email</div>)}
+              </div>
             </div>
             <div className="mb-3">
-              <label className="form-label">Password</label>
               <input type="password" className="form-control" value={password} placeholder="Password"
                 onChange={(event) => {setPassword(event.target.value)}}
                 onBlur={() => {setPassBlur(true)}}/>
+                <div className="">
               {passBlur && password.length === 0 && (<div className="form-text text-danger">Password is required</div>)}
               {passBlur && password.length !== 0 && password.length < 8 && (<div className="form-text text-danger">Enter min 8 characters</div>)}
+              </div>
             </div>
-            {/* <div className="mb-3 foFrm-check">
-          <input type="checkbox" className="form-check-input" />
-          <label className="form-check-label">Check me out</label>
-        </div> */}
-            <button type="button" className="btn btn-outline-light btn-dark" onClick={onSubmit}>
-              Login
-            </button>
+            <SparkButton name={'Login'} clickFunc={onSubmit} loading={loginLoader}></SparkButton>
+            <div className="text-end">
+              <Toggle value={true}></Toggle>
+            </div>
           </form>
         </div>
       </div>
