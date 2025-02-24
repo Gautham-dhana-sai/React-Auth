@@ -4,6 +4,7 @@ import { AuthService } from "../../library/services/auth.service";
 import PopUpModal from "../Common/PopUp-Modal";
 import { useNavigate } from "react-router-dom";
 import SparkButton from "../imports/Spark-Button";
+import Toggle from "../imports/Toggle";
 
 
 export function Login() {
@@ -99,6 +100,9 @@ export function Login() {
               </div>
             </div>
             <SparkButton name={'Login'} clickFunc={onSubmit} loading={loginLoader}></SparkButton>
+            <div className="text-end">
+              <Toggle value={true}></Toggle>
+            </div>
           </form>
         </div>
       </div>

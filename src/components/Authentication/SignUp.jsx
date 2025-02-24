@@ -6,6 +6,7 @@ import ContainerBox from "../Common/Container-Box";
 import Otp from "../Common/Otp";
 import PopUpModal from "../Common/PopUp-Modal";
 import SparkButton from "../imports/Spark-Button";
+import Toggle from "../imports/Toggle";
 
 export function SignUp() {
   const authService = new AuthService()
@@ -129,6 +130,9 @@ export function SignUp() {
             </div>
             <div>
               <SparkButton name={'Sign Up'} clickFunc={onSubmit}></SparkButton>
+              <div className="text-end">
+              <Toggle value={false}></Toggle>
+              </div>
             </div>
           </form>
         </div>
