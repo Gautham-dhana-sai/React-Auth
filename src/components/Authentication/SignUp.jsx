@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {AuthService} from "../../library/services/auth.service";
 
-import ContainerBox from "../Common/Container-Box";
 import Otp from "../Common/Otp";
 import PopUpModal from "../Common/PopUp-Modal";
 import SparkButton from "../imports/Spark-Button";
@@ -95,8 +94,7 @@ export function SignUp() {
 
   return (
     <>
-    <ContainerBox>
-      { !fragment && <div className="container">
+      { !fragment && <div className="container p-5">
         <div className="">
           <h2 className="">Sign Up</h2>
           <br></br>
@@ -140,7 +138,6 @@ export function SignUp() {
       {fragment == 'otp' && <Otp email={email} verify={verify} verifyLoader={verifyLoader}></Otp>}
       {openModal && !verified && <PopUpModal modal_data={modal_data} close={closeModal} submit={sendOtp}></PopUpModal>}
       {openModal && verified && <PopUpModal modal_data={modal_data} close={closeModal} submit={openLogin}></PopUpModal>}
-      </ContainerBox>
-    </>
+      </>
   );
 }
