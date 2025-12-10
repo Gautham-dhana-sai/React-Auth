@@ -5,7 +5,7 @@ const ContainerBox = ({children}) => {
   return (
     <>
       <div className="d-flex justify-content-center align-items-center vh-100">
-        <div className="p-5 border border-5 border-grey rounded">
+        <div className="border border-5 border-grey rounded container-wi container-hei">
         {children}
         </div>
       </div>

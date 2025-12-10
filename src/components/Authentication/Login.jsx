@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ContainerBox from "../Common/Container-Box";
 import { AuthService } from "../../library/services/auth.service";
 import PopUpModal from "../Common/PopUp-Modal";
 import { useNavigate } from "react-router-dom";
@@ -72,8 +71,7 @@ export function Login() {
 
     return (
         <>
-        <ContainerBox>
-        <div className="container">
+        <div className="container p-5">
         <div className="">
           <h2 className="">Login</h2>
           <br></br>
@@ -99,16 +97,17 @@ export function Login() {
               {passBlur && password.length !== 0 && password.length < 8 && (<div className="form-text text-danger">Enter min 8 characters</div>)}
               </div>
             </div>
-            <SparkButton name={'Login'} clickFunc={onSubmit} loading={loginLoader}></SparkButton>
-            <div className="text-end">
-              <Toggle value={true}></Toggle>
+            <div>
+              <SparkButton name={'Login'} clickFunc={onSubmit} loading={loginLoader}></SparkButton>
+              <div className="text-end">
+                <Toggle value={true}></Toggle>
+              </div>
             </div>
           </form>
         </div>
       </div>
       {openModal && !signup && <PopUpModal modal_data={modal_data} close={closeModal} submit={closeModal}></PopUpModal>}
       {openModal && signup && <PopUpModal modal_data={modal_data} close={closeModal} submit={openSignup}></PopUpModal>}
-        </ContainerBox>
         </>
     )
 }

@@ -1,9 +1,17 @@
+import Carousel from "../Common/Carousel"
+import InfiniteBox from "../Common/Infinite-Box"
+import LocationBox from "../Common/Location-Box"
+import MainTitle from "../Common/Main-Title"
+import SearchBox from "../Common/Search-Box"
+
 const HomePage = () => {
     return (
         <>
-        <h1>
-            Welcome Home
-        </h1>
+            <MainTitle></MainTitle>
+            <LocationBox></LocationBox>
+            <SearchBox></SearchBox>
+            <Carousel></Carousel>
+            <InfiniteBox></InfiniteBox>
         </>
     )
 }
