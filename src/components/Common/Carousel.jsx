@@ -23,7 +23,11 @@ const Carousel = () => {
         >
           {slides.map((text, i) => (
             <div key={i} className="carousel-slide box">
-              {text}
+              <div className="small-square box icon-center"></div>
+                <div className="wid-180 pad-5">
+                  <strong>{text}</strong>
+                  <div>Statement</div>
+                </div>
             </div>
           ))}
         </div>
