@@ -13,3 +13,26 @@ input{
 .shadow-btm {
     box-shadow: 0px 2px 0px 0px gray;
 }
+
+.input-wrapper {
+  position: relative;
+  /* width: 250px; */
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 7px 5px 6px 35px; /* left padding for icon */
+  /* border: 2px solid #ccc;
+  border-radius: 8px; */
+  font-size: 15px;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  pointer-events: none; /* icon doesn’t block typing */
+  opacity: 0.6;
+}

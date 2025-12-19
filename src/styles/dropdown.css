@@ -1,0 +1,85 @@
+.select-wrapper {
+  position: relative;
+  width: 260px;
+  font-family: system-ui, sans-serif;
+}
+
+/* hide checkbox */
+.select-wrapper input {
+  display: none;
+}
+
+/* trigger */
+.select-trigger {
+  height: 32px;
+  /* padding: 0 12px; */
+  /* border: 2px solid #aaa; */
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.chevron {
+  font-size: 14px;
+  transition: transform 0.2s ease;
+}
+
+/* open state */
+.select-toggle:checked + .select-trigger + .select-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* rotate arrow */
+.select-toggle:checked + .select-trigger .chevron {
+  transform: rotate(180deg);
+}
+
+.select-wrapper:focus-within .select-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* dropdown */
+.select-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 100%;
+  border: 2px solid #aaa;
+  border-radius: 10px;
+  background: #fff;
+  list-style: none;
+  padding: 6px;
+  margin: 0;
+
+  /* NEW */
+  max-height: 150px;      /* adjust as needed */
+  overflow-y: auto;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+/* items */
+.select-menu li {
+  padding: 3px 2px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.select-menu li:hover {
+  background: #f0f0f0;
+}
+
+.none {
+    display: none
+}

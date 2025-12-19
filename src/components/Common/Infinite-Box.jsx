@@ -9,6 +9,7 @@ const InfiniteBox = () => {
                     <ItemBox></ItemBox>
                     <ItemBox></ItemBox>
                     <ItemBox></ItemBox>
+                    <ItemBox></ItemBox>
                 </section>
             </section>
         </>
