@@ -16,3 +16,35 @@
 .container-hei{
     height: 600px
 }
+
+.inner-scroll-area {
+  height: 100%;
+  overflow-y: auto; /* scroll inside only */
+  padding: 4px;
+}
+
+.container-shape{
+    position: fixed;
+    height: 550px;
+    max-width: 350px;
+    top: 70px;
+    left: 40%
+}
+
+.icon-3xl{
+    font-size: 3em;
+}
+
+.icon-std{
+    line-height: 0.99; 
+}
+
+.icon-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.m-bot-ne5{
+    margin-bottom: -5px
+}
