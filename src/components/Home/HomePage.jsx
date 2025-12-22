@@ -3,6 +3,7 @@ import InfiniteBox from "../Common/Infinite-Box"
 import LocationBox from "../Common/Location-Box"
 import MainTitle from "../Common/Main-Title"
 import SearchBox from "../Common/Search-Box"
+import Dock from "./Dock"
 
 const HomePage = () => {
     return (
@@ -12,6 +13,7 @@ const HomePage = () => {
             <SearchBox></SearchBox>
             <Carousel></Carousel>
             <InfiniteBox></InfiniteBox>
+            <Dock></Dock>
         </>
     )
 }
