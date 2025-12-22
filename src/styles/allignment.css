@@ -24,8 +24,8 @@
 }
 
 .container-shape{
-    position: fixed;
-    height: 550px;
+    position: relative;
+    height: 600px;
     max-width: 350px;
     top: 70px;
     left: 40%
