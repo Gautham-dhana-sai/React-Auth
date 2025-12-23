@@ -3,7 +3,7 @@ import "../../styles/dropdown.css"
 import { useState } from "react";
 
 
-const SingleSelectDropdown = ({ placeholder, options }) => {
+const SingleSelectDropdown = ({ placeholder, display, options, list, selectItem }) => {
   const [check, checkbox] = useState(false)
   
   return (
@@ -12,12 +12,14 @@ const SingleSelectDropdown = ({ placeholder, options }) => {
         <input type="checkbox" id={placeholder} className="select-toggle" defaultChecked={check} onClick={() => checkbox(true)}/>
 
         <label htmlFor={placeholder} className="select-trigger">
-          <span className="selected-value">{placeholder}</span>
+          <span className="selected-value">{display || placeholder}</span>
           <span className="chevron">▾</span>
         </label>
 
         <ul className="select-menu">
-          {options.map((option) => <li key={option}>{option}</li>)}
+          {list?.length 
+            ? list.map((name, index) => <li key={`${name}-${index}`} onClick={() => selectItem(name)}>{name}</li>)
+            : options?.length && options.map((option) => <li key={option.state_code} onClick={() => selectItem(option.name)}>{option.name}</li>)}
         </ul>
       </div>
     </>
@@ -26,7 +28,10 @@ const SingleSelectDropdown = ({ placeholder, options }) => {
 
 SingleSelectDropdown.propTypes = {
     placeholder: PropTypes.string,
-    options: PropTypes.array
+    display: PropTypes.string,
+    options: PropTypes.array,
+    list: PropTypes.array,
+    selectItem: PropTypes.func
 }
 
 export default SingleSelectDropdown;
