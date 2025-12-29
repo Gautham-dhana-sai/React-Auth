@@ -1,15 +1,30 @@
 import PropTypes from "prop-types";
 import "../../styles/dropdown.css"
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 const SingleSelectDropdown = ({ placeholder, display, options, list, selectItem }) => {
+  const dropdownRef = useRef(null)
   const [check, checkbox] = useState(false)
+
+  useEffect(() => {
+    const handleBlur = (e) => {
+      if (
+        check && dropdownRef.current &&
+        !dropdownRef.current.contains(e.target)
+      ) {
+        checkbox(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleBlur)
+    return () => document.removeEventListener("mousedown", handleBlur)
+  }, [check])
   
   return (
     <>
-      <div className="select-wrapper form-control" onBlur={() => checkbox(false)}>
-        <input type="checkbox" id={placeholder} className="select-toggle" defaultChecked={check} onClick={() => checkbox(true)}/>
+      <div ref={dropdownRef} className="select-wrapper form-control">
+        <input type="checkbox" id={placeholder} className="select-toggle" checked={check} readOnly onClick={() => checkbox(true)}/>
 
         <label htmlFor={placeholder} className="select-trigger">
           <span className="selected-value">{display || placeholder}</span>
