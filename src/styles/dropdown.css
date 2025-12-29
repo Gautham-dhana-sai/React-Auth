@@ -34,6 +34,13 @@
   transform: translateY(0);
 }
 
+/* close state */
+.select-toggle:not(:checked) + .select-trigger + .select-menu {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+}
+
 /* rotate arrow */
 .select-toggle:checked + .select-trigger .chevron {
   transform: rotate(180deg);
@@ -75,6 +82,7 @@
   border-radius: 6px;
   cursor: pointer;
   overflow-y: hidden;
+  overflow-x: hidden;
   height: 25px
 }
 
