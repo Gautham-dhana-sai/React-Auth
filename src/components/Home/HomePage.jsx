@@ -1,18 +1,19 @@
 import Carousel from "../Common/Carousel"
 import InfiniteBox from "../Common/Infinite-Box"
 import LocationBox from "../Common/Location-Box"
-import MainTitle from "../Common/Main-Title"
 import SearchBox from "../Common/Search-Box"
 import Dock from "./Dock"
+import Items from "./Items"
 
 const HomePage = () => {
     return (
         <>
-            <MainTitle></MainTitle>
             <LocationBox></LocationBox>
             <SearchBox></SearchBox>
             <Carousel></Carousel>
-            <InfiniteBox></InfiniteBox>
+            <InfiniteBox>
+                <Items></Items>
+            </InfiniteBox>
             <Dock></Dock>
         </>
     )
