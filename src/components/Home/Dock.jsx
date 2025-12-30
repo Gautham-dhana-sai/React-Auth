@@ -1,6 +1,14 @@
 import "../../styles/dock.css";
+import { useNavigate } from "react-router-dom";
 
 const Dock = () => {
+  const navigate = useNavigate()
+
+  const addItem = () => {
+    console.log('navigating')
+    navigate('/add-item')
+  }
+
   return (
     <>
       <div className="sticky-dock">
@@ -25,7 +33,7 @@ const Dock = () => {
           </li>
           <li className="icon-content">
             <a
-              href=""
+              onClick={addItem}
               aria-label="Add Item"
               data-social="Add Item"
               className="link"

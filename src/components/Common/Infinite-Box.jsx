@@ -1,33 +1,17 @@
-import ItemBox from "./Item-Box"
+import PropTypes from "prop-types"
 
-const InfiniteBox = () => {
-    const items = [
-        {
-            id: 'item1',
-            title: 'ITEM1',
-            description: `This is item1's description`
-        }, {
-            id: 'item2',
-            title: 'ITEM2',
-            description: `This is item2's description`
-        }, {
-            id: 'item3',
-            title: 'ITEM3',
-            description: `This is item3's description`
-        }
-    ]
-
+const InfiniteBox = ({children}) => {
     return (
         <>
             <section className="infinite-box">
-                <section className="cards">
-                    {items.map((item) => 
-                        <ItemBox key={item.id} item={item}></ItemBox>
-                    )}
-                </section>
+                {children}
             </section>
         </>
     )
+}
+
+InfiniteBox.propTypes = {
+    children: PropTypes.node
 }
 
 export default InfiniteBox
