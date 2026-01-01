@@ -13,13 +13,18 @@ export class ApiLib {
   async callApi(url, method, body = null) {
     try {
       const METHOD = method.toUpperCase();
+      let response = null
       switch (METHOD) {
         case "GET":
+          body = this._encryptLib.encrypt({...body, project: null})
           break;
-        case "POST": {
-          const response = await axios.post(url, body);
+        case "POST": 
+          body = this._encryptLib.encrypt({...body, project: null})
+          response = await axios.post(url, body);
+          return this._encryptLib.decrypt(response.data);
+        case "TPA-P":
+          response = await axios.post(url, body);
           return response.data;
-        }
       }
     } catch (error) {
       console.log("Error at callApi", error);

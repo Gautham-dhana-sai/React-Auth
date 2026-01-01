@@ -71,9 +71,9 @@ export function Login() {
 
     return (
         <>
-        <div className="container p-5">
+        <div className="container p-3-1-rem">
         <div className="">
-          <h2 className="">Login</h2>
+          <h2 className="title-font">Login</h2>
           <br></br>
           <form>
             <div className="mb-3">

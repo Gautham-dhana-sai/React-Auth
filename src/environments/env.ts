@@ -1,3 +1,6 @@
 export const env = {
-    apiUrl: 'http://localhost:2000'
+    secretKey: 'ABCD',
+    apiUrl: 'http://localhost:3000',
+    loginApiUrl: 'https://dhana-login-server.vercel.app',
+    locationApiUrl: 'https://countriesnow.space/api/v0.1/countries'
 }
