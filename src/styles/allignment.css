@@ -57,6 +57,10 @@
     padding: 5px;
 }
 
+.p-3-1-rem{
+    padding: 3rem 1rem !important
+}
+
 .m-left-5{
     margin-left: 5px;
 }

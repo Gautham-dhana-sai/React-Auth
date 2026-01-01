@@ -8,16 +8,16 @@ export class LocationsService {
 
     async getStatesListOfCountry(body) {
         const url = LocationSettings.GET_STATES_OF_COUNTRY;
-        return await this._apiLib.callApi(url, "POST", body)
+        return await this._apiLib.callApi(url, "TPA-P", body)
     }
 
     async getCitiesOfState(body) {
         const url = LocationSettings.GET_CITIES_OF_COUNTRY_STATE;
-        return await this._apiLib.callApi(url, "POST", body)
+        return await this._apiLib.callApi(url, "TPA-P", body)
     }
 
     async getCitiesListOfCountry(body) {
         const url = LocationSettings.GET_CITIES_OF_COUNTRY;
-        return await this._apiLib.callApi(url, "POST", body)
+        return await this._apiLib.callApi(url, "TPA-P", body)
     }
 }

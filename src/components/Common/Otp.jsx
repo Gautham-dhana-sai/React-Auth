@@ -42,8 +42,8 @@ const Otp = ({email, verify, verifyLoader}) => {
 
     return (
         <>
-            <div className="container text-center">
-                <div className="">
+            <div className="container p-3-1-rem text-center">
+                <div className="title-font">
                     <h3>Verification</h3>
                     <form>
                         <div className="d-flex justify-content-center">

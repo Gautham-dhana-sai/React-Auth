@@ -38,7 +38,7 @@ export function SignUp() {
     setEmailBlur(true)
     setPassBlur(true)
     setNameBlur(true)
-    if(email.includes('@') && password.length >= 8 && user_name.length >= 8) {
+    if(email.includes('@') && password.length >= 8 && user_name.length >= 4) {
       setOpenModal(true)
     }
   }
@@ -55,7 +55,8 @@ export function SignUp() {
   async function signUpUser() {
     const body = {
       email,
-      password
+      password,
+      username: user_name
     }
     await authService.signUpUser(body).then((response) => {
       if(response && response.success) {
@@ -94,9 +95,9 @@ export function SignUp() {
 
   return (
     <>
-      { !fragment && <div className="container p-5">
+      { !fragment && <div className="container p-3-1-rem">
         <div className="">
-          <h2 className="">Sign Up</h2>
+          <h2 className="title-font">Sign Up</h2>
           <br></br>
           <form>
             <div className="mb-3">
@@ -107,7 +108,7 @@ export function SignUp() {
                 onBlur={() => {setNameBlur(true)}}/>
               </div>
               {nameBlur && user_name.length === 0 && (<div className="form-text text-danger">User Name is required</div>)}
-              {nameBlur && user_name.length !== 0 && user_name.length < 8 && (<div className="form-text text-danger">Enter min 8 characters</div>)}
+              {nameBlur && user_name.length !== 0 && user_name.length < 4 && (<div className="form-text text-danger">Enter min 4 characters</div>)}
             </div>
             <div className="mb-3">
               <div className="input-group flex-nowrap">
