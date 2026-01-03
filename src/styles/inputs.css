@@ -36,3 +36,7 @@ input, textarea{
   pointer-events: none; /* icon doesn’t block typing */
   opacity: 0.6;
 }
+
+.input-example-padding {
+  padding: .375rem .25rem !important 
+}
