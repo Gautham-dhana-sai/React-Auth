@@ -115,7 +115,7 @@ export function SignUp() {
               <input type="email" className="form-control" value={email} placeholder="Your email"
                 onChange={(event) => {setEmail(event.target.value)}}
                 onBlur={() => {setEmailBlur(true)}}/>
-              <span className="input-group-text  shadow-btm" id="basic-addon2"><strong>@xyz.com</strong></span>
+              <span className="input-group-text input-example-padding shadow-btm" id="basic-addon2"><strong>@xyz.com</strong></span>
               </div>
               {emailBlur && email.length === 0 && (<div className="form-text text-danger">Email is required</div>)}
               {emailBlur && email.length !== 0 && !email.includes("@") && (<div className="form-text text-danger">Enter a valid email</div>)}
